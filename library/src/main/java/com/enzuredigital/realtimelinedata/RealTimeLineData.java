@@ -67,9 +67,9 @@ public class RealTimeLineData {
         lineData.notifyDataChanged();
     }
 
-    public boolean addSample(int channel, long x, float value) {
+    public void addSample(int channel, long x, float value) {
         if (x < lastX[channel]) {
-            return false;
+            return;
         }
         ILineDataSet dataset;
 
@@ -88,8 +88,6 @@ public class RealTimeLineData {
         dataset = lineData.getDataSetByIndex(channel);
         dataset.addEntry(new Entry(value, index));
         lastX[channel] = x;
-
-        return true;
     }
 
     /**
